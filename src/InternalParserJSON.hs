@@ -4,7 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 
-module InternalParseJSON(
+module InternalParserJSON(
   JsonToken(..)
   ,Separator(..)
   ,ConType(..)

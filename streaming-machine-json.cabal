@@ -59,7 +59,7 @@ library
                       TokenJSON
                       StreamJSON
 
-                      InternalParseJSON
+                      InternalParserJSON
   -- Modules included in this library but not exported.
   -- other-modules:
 
