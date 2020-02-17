@@ -41,11 +41,11 @@ import  StreamJSON
 
 
 data JError =
-  BadState [JsonToken]  (SnocList DelimSort)  (SnocList Accessor )
-  |LexingError String
-  |EarlyTerm  [JsonToken] (SnocList DelimSort) (SnocList Accessor )
+    BadState    [JsonToken]  (SnocList DelimSort)  (SnocList Accessor )
+  | LexingError String
+  | EarlyTerm   [JsonToken]  (SnocList DelimSort)  (SnocList Accessor )
   | InitOrFinal  JsonToken
-  | InvalidSeq [JsonToken] ( SnocList DelimSort) (SnocList Accessor)
+  | InvalidSeq  [JsonToken]  (SnocList DelimSort)  (SnocList Accessor)
   deriving(Eq,Ord,Show)
 
 

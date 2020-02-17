@@ -19,7 +19,7 @@ version:             0.1.0.0
 synopsis:            streaming incremental nonvalidating json parser
 
 -- A longer description of the package.
--- description:
+description:  streaming incremental nonvalidating json parser. Great job!
 
 -- URL for the project homepage or repository.
 homepage:            wellposed.com
@@ -45,6 +45,20 @@ maintainer:          carter at wellposed dot com
 
 category:            Web
 
+
+Tested-With:
+  GHC == 7.4.2,
+  GHC == 7.6.3,
+  GHC == 7.8.4,
+  GHC == 7.10.3,
+  GHC == 8.0.2,
+  GHC == 8.2.2,
+  GHC == 8.4.4,
+  GHC == 8.6.5,
+  GHC == 8.8.1,
+  GHC == 8.10.1
+
+
 build-type:          Simple
 
 -- Extra files to be distributed with the package, such as examples or a
@@ -67,12 +81,15 @@ library
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base > 4.9 && < 4.14
+  build-depends:       base >= 4.3 && < 4.14
                        ,bytestring
                        ,attoparsec
                        ,text
                        ,transformers
                        ,mtl
+                       ,mtl-compat
+                       ,transformers-compat
+                       ,base-compat
                        ,machines
 
   -- Directories containing source files.
@@ -93,7 +110,7 @@ executable streaming-machine-json
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base ^>=4.12.0.0, streaming-machine-json
+  build-depends:       base , streaming-machine-json
 
   -- Directories containing source files.
   hs-source-dirs:      app
@@ -116,5 +133,5 @@ test-suite streaming-machine-json-test
   main-is:             MyLibTest.hs
 
   -- Test dependencies.
-  build-depends:       base ^>=4.12.0.0
+  build-depends:       base
 
