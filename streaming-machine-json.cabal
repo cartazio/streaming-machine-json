@@ -82,7 +82,7 @@ library
 
   -- Other library packages from which modules are imported.
   build-depends:       base >= 4.3 && < 4.14
-                       ,bytestring
+                       ,bytestring  ^>= 0.10.10
                        ,attoparsec
                        ,text
                        ,transformers
