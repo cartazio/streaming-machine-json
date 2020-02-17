@@ -2,7 +2,7 @@
 module StreamJSON (SnocList (..), Accessor (..), PrimVal (..)) where
 import Data.Text
 import Data.Typeable
-#if MIN_VERSION_base(4,4,0)
+#if MIN_VERSION_base(4,5,0)
 import GHC.Generics
 #endif
 import Data.Foldable
@@ -12,7 +12,7 @@ data Accessor
   = ArrayIx Int
   | ObjectField Text
   deriving (Eq,Ord,Show,Typeable,
-#if MIN_VERSION_base(4,4,0)
+#if MIN_VERSION_base(4,5,0)
             Generic
 #endif
     )
@@ -25,7 +25,7 @@ data PrimVal
   | PrimEmptyArray
   | PrimEmptyObject
   deriving (Eq,Ord,Show,Typeable,
-#if MIN_VERSION_base(4,4,0)
+#if MIN_VERSION_base(4,5,0)
             Generic
 #endif
     )

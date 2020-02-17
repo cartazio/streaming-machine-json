@@ -65,6 +65,13 @@ build-type:          Simple
 -- README.
 extra-source-files:  CHANGELOG.md, README.md
 
+flag bytestring-builder
+  description:
+    Depend on the [bytestring-builder](https://hackage.haskell.org/package/bytestring-builder)
+    package for backwards compatibility.
+  default: False
+  manual: False
+
 
 library
   -- Modules exported by the library.
@@ -82,15 +89,21 @@ library
 
   -- Other library packages from which modules are imported.
   build-depends:       base >= 4.3 && < 4.14
-                       ,bytestring  ^>= 0.10.10
-                       ,attoparsec
-                       ,text
+                       ,bytestring >= 0.9 && < 0.11
+                       ,attoparsec ^>= 0.13.2.3
+                       ,text ^>= 1.2.4.0
                        ,transformers
                        ,mtl
                        ,mtl-compat
                        ,transformers-compat
                        ,base-compat
-                       ,machines
+                       ,machines ^>= 0.7
+
+  if flag(bytestring-builder)
+    build-depends: bytestring         >= 0.9    && < 0.10.4,
+                   bytestring-builder >= 0.10.4.0.2 && < 0.11
+   else
+    build-depends: bytestring         >= 0.10.4 && < 0.11
 
   -- Directories containing source files.
   hs-source-dirs:      src
