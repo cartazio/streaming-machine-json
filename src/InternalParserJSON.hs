@@ -3,7 +3,6 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-
 module InternalParserJSON(
   JsonToken(..)
   ,Separator(..)

@@ -3,6 +3,8 @@ module StreamJSON (SnocList (..), Accessor (..), PrimVal (..)) where
 import Data.Text
 import Data.Typeable
 import GHC.Generics
+import Data.Foldable
+import Data.Traversable
 
 data Accessor
   = ArrayIx Int
