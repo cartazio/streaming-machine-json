@@ -27,6 +27,15 @@ import qualified Data.ByteString as B
 import qualified Data.ByteString.Lazy as L
 import qualified Data.ByteString.Unsafe as B
 
+
+-- these imports are only needed pre GHC 7.10 / pre
+#if !MIN_VERSION_base(4,8,0)
+import Data.Monoid
+import Control.Applicative
+#endif
+----
+
+
 import TokenJSON
 
 
