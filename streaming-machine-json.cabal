@@ -81,7 +81,7 @@ flag bytestring-builder
 
 library
   -- Modules exported by the library.
-  exposed-modules:    MyLib
+  exposed-modules:
                       InternalJSON
                       TokenJSON
                       StreamJSON
@@ -103,6 +103,7 @@ library
                        ,mtl-compat
                        ,transformers-compat
                        ,base-compat
+                       ,exceptions ^>= 0.10.4
                        ,machines ^>= 0.7
 
   if flag(bytestring-builder)
@@ -129,7 +130,10 @@ executable streaming-machine-json
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base , streaming-machine-json
+  build-depends:       base
+                       ,streaming-machine-json
+                       ,bytestring
+                       ,machines
 
   -- Directories containing source files.
   hs-source-dirs:      app
@@ -152,5 +156,8 @@ test-suite streaming-machine-json-test
   main-is:             MyLibTest.hs
 
   -- Test dependencies.
-  build-depends:       base
+  build-depends:      base
+                      ,streaming-machine-json
+                      ,bytestring
+                      ,machines
 

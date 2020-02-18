@@ -2,16 +2,15 @@
 module StreamJSON (SnocList (..), Accessor (..), PrimVal (..)) where
 import Data.Text
 import Data.Typeable
-#if MIN_VERSION_base(4,6 ,0)
+import Data.Data
 import GHC.Generics
-#endif
 import Data.Foldable
 import Data.Traversable
 
 data Accessor
   = ArrayIx Int
   | ObjectField Text
-  deriving (Eq,Ord,Show,Typeable,Generic)
+  deriving (Eq,Ord,Show,Typeable,Generic,Data)
 
 data PrimVal
   = PrimString !Text
@@ -20,11 +19,12 @@ data PrimVal
   | PrimNull
   | PrimEmptyArray
   | PrimEmptyObject
-  deriving (Eq,Ord,Show,Typeable,Generic)
+  deriving (Eq,Ord,Show,Typeable,Generic,Data,Typeable)
 
 infixl  5 :|
 
 data SnocList a
   = RNil
   | (:|) (SnocList a) a
-  deriving (Eq,Ord,Functor,Foldable,Traversable,Show,Generic)
+  deriving (Eq,Ord,Functor,Foldable,Traversable,Show,Generic,Data,Typeable)
+
