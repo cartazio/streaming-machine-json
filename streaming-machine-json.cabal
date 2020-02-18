@@ -25,7 +25,7 @@ description:  streaming incremental nonvalidating json parser. Great job!
 homepage:            wellposed.com
 
 -- A URL where users can report bugs.
--- bug-reports:
+bug-reports: https://github.com/cartazio/streaming-machine-json
 
 
 
