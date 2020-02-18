@@ -198,6 +198,9 @@ parserState context nesting path
 initOrFinalDelim :: MonadThrow m => JsonToken -> PlanT (Is JsonToken) (SnocList Accessor, PrimVal) m res
 initOrFinalDelim od
  | od == OpenDelim Object || od == OpenDelim Array = parserState [od] RNil RNil
+  ---- NOTE, i'm very suspicious of these two, but it seems morally the right choice
+ | od == EmptyObject  = yield (RNil,PrimEmptyObject) >> stop
+ | od == EmptyArray  = yield (RNil,PrimEmptyArray) >> stop
 initOrFinalDelim od = lift $ throwM $ InitOrFinal od
 
 

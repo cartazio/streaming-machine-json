@@ -16,10 +16,11 @@ referenceLiterals = referenceNotObjects ++ referenceObjects
 
 referenceObjects :: [[BSC.ByteString]]
 referenceObjects= [
-
-                    ["{}"]
+                    ["[","]"]
+                    ,["{}"]
                    ,["{\"a\": 0.0 }"]
                    ,["{","}"]
+                   ,["[1,\"c\",[]]"]
                 ]
 
 referenceNotObjects   :: [[BSC.ByteString]]
@@ -43,11 +44,17 @@ refNotObjectResults = [[EmptyArray],[OpenDelim Array,TokenNumber 0.0,CloseDelim 
 
 
 refObjectResults :: [[JsonToken]]
-refObjectResults = [[EmptyObject]
+refObjectResults = [[EmptyArray]
+                    ,[EmptyObject]
                     ,[OpenDelim Object,TokenText "a",TokenSeparator Colon,TokenNumber 0.0,CloseDelim Object]
-                    ,[EmptyObject] ]
+                    ,[EmptyObject]
+                    ,[OpenDelim Array,TokenNumber 1.0,TokenSeparator Comma,TokenText "c",TokenSeparator Comma,EmptyArray,CloseDelim Array] ]
 
-
+refObjectArrayDigest :: [[(SnocList Accessor, PrimVal)]]
+refObjectArrayDigest  =[[(RNil,PrimEmptyArray)]
+                        ,[(RNil,PrimEmptyObject)]
+                        ,[((:|) RNil (ObjectField "a"),PrimNumber 0.0)],[(RNil,PrimEmptyObject)]
+                        ,[((:|) RNil (ArrayIx 0),PrimNumber 1.0),((:|) RNil (ArrayIx 1),PrimString "c"),((:|) RNil (ArrayIx 2),PrimEmptyArray)]]
 
 main :: IO ()
 main = do
@@ -66,4 +73,8 @@ main = do
                       referenceObjects
   putStrLn "now we look at those summaries"
   print outputStreams
+  case outputStreams of
+      Right os ->    if os  /=   refObjectArrayDigest
+                       then error "bad outputStreams digest!"
+                       else return ()
   return ()
