@@ -129,6 +129,8 @@ token2JPrimVal (TokenSeparator _ )  = Nothing
 {-# SPECIALIZE eventor :: ProcessT IO JsonToken (SnocList Accessor,PrimVal) #-}
 {-# SPECIALIZE eventor :: ProcessT (Either SomeException) JsonToken (SnocList Accessor,PrimVal) #-}
 {-# SPECIALIZE eventor :: ProcessT (ST s) JsonToken (SnocList Accessor,PrimVal) #-}
+-- | 'eventor' acts as a token stream validator, for valid JSON objects. If you
+-- cant assume
 eventor :: forall m e . MonadThrow   m
         => ProcessT m JsonToken (SnocList Accessor,PrimVal)
 eventor = construct $ parserState [] RNil RNil

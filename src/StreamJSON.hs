@@ -19,7 +19,7 @@ data PrimVal
   | PrimNull
   | PrimEmptyArray
   | PrimEmptyObject
-  deriving (Eq,Ord,Show,Typeable,Generic,Data,Typeable)
+  deriving (Eq,Ord,Show,Typeable,Generic,Data)
 
 infixl  5 :|
 
